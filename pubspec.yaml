@@ -1,0 +1,55 @@
+name: evently
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.0
+  #------------------------PACKAGES-------------------#
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #Utilitiy Packages
+  shared_preferences: ^2.4.0
+  shimmer: ^3.0.0
+  google_fonts: ^6.2.1
+  introduction_screen: ^3.1.14
+  easy_localization: ^3.0.7
+
+  #Assets
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.17
+  iconsax_flutter: ^1.0.0
+  animated_toggle_switch: ^0.8.4
+  #State Management
+  provider: ^6.1.2
+
+
+  #----------------------PACKAGES END-----------------#
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  #------------------------LOCAL ASSETS-------------------#
+  assets:
+    - assets/images/
+    - assets/translations/
+  #------------------------LOCAL FONTS-------------------#
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf
+        - asset: assets/fonts/Inter-VariableFont_opsz,wght.ttf
+
+  # see https://flutter.dev/to/font-from-package
