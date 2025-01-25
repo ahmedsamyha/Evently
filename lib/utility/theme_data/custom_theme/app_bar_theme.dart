@@ -21,7 +21,7 @@ class CustomAppBarTheme {
       iconTheme: IconThemeData(color: Colors.black, size: 24),
       actionsIconTheme: IconThemeData(color: Colors.black, size: 24),
       titleTextStyle: TextStyle(
-          fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.black));
+          fontSize: 20.0, fontWeight: FontWeight.w400, color: Colors.black));
 
   //dark AppBar Theme ------------------------------
 
@@ -35,8 +35,8 @@ class CustomAppBarTheme {
         statusBarColor: AppColors.darkBackground,
         statusBarIconBrightness: Brightness.light,
       ),
-      iconTheme: IconThemeData(color: Colors.white, size: 24),
+      iconTheme: IconThemeData(color: AppColors.kPrimaryColor, size: 24),
       actionsIconTheme: IconThemeData(color: Colors.white, size: 24),
       titleTextStyle: TextStyle(
-          fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.white));
+          fontSize: 20.0, fontWeight: FontWeight.w400, color: AppColors.kPrimaryColor));
 }

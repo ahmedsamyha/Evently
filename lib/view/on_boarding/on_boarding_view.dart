@@ -27,9 +27,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
     final pageDecoration = PageDecoration(
       titleTextStyle: Theme.of(context)
           .textTheme
-          .headlineMedium!
+          .titleMedium!
           .copyWith(color: AppColors.kPrimaryColor),
-      bodyTextStyle: Theme.of(context).textTheme.bodySmall!,
+      bodyTextStyle: Theme.of(context).textTheme.bodyMedium!,
       bodyPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
       bodyFlex: 2,
       imagePadding: EdgeInsets.zero,
@@ -46,17 +46,14 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const LoginView()));
         },
         done: Text("finish".tr(),
-            style: TextStyle(
-                color: AppColors.kPrimaryColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w700)),
+            style: Theme.of(context).textTheme.headlineSmall),
         back: Text(
           "back".tr(),
-          style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16,),
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         next: Text(
           "next".tr(),
-          style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 16),
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         globalHeader: Align(
           alignment: Alignment.topCenter,

@@ -13,6 +13,8 @@
   "email": "Email",
   "password": "Password",
   "forget_password": "Forget Password?",
+  "forget_password2": "Forget Password",
+
   "login": "Login",
   "do_not_have_account": "Don’t Have Account ?",
   "create_account": " Create Account",
@@ -43,5 +45,8 @@
   "logout": "Logout",
   "finish" : "Finish",
   "back" :"Back",
-  "next": "Next"
+  "next": "Next",
+  "or": "Or",
+  "register": "Register"
+
 }

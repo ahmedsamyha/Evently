@@ -11,23 +11,19 @@ class CustomTextFormFieldTheme {
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 3,
-    prefixIconColor:AppColors.lightIcon,
-    suffixIconColor: AppColors.lightIcon,
-    labelStyle: const TextStyle().copyWith(
-        fontSize: 16, color:AppColors.textGray, fontWeight: FontWeight.w500),
-    hintStyle: const TextStyle().copyWith(
-        fontSize: 16, color: AppColors.textGray, fontWeight: FontWeight.w500),
-    errorStyle: const TextStyle().copyWith(
-        fontSize: 16, color:AppColors.textGray, fontWeight: FontWeight.w500),
-    floatingLabelStyle: const TextStyle().copyWith(
-        fontSize: 16, color:AppColors.textGray, fontWeight: FontWeight.w500),
+    prefixIconColor: AppColors.textGray,
+    suffixIconColor: AppColors.textGray,
+    labelStyle: const TextStyle().copyWith(fontSize: 16, color: AppColors.textGray, fontWeight: FontWeight.w500),
+    hintStyle: const TextStyle().copyWith(fontSize: 16, color: AppColors.textGray, fontWeight: FontWeight.w500),
+    errorStyle: const TextStyle().copyWith(fontSize: 16, color:AppColors.textGray, fontWeight: FontWeight.w500),
+    floatingLabelStyle:  const TextStyle().copyWith(fontSize: 16, color: AppColors.textGray, fontWeight: FontWeight.w500),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(TSizes.borderRadiusXl),
-      borderSide: const BorderSide(width: 1, color:AppColors.textGray),
+      borderSide: BorderSide(width: 1, color: AppColors.textGray),
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(TSizes.borderRadiusXl),
-      borderSide: const BorderSide(width: 1, color: AppColors.textGray),
+      borderSide: BorderSide(width: 1, color: AppColors.textGray),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(TSizes.borderRadiusXl),
@@ -49,11 +45,8 @@ class CustomTextFormFieldTheme {
     errorMaxLines: 3,
     prefixIconColor: AppColors.darkIcon,
     suffixIconColor: AppColors.darkIcon,
-    labelStyle: const TextStyle().copyWith(
-        fontSize: 16, color: AppColors.textDarkWhite, fontWeight: FontWeight.w500),
-    hintStyle:
-    const TextStyle().copyWith(
-        fontSize: 16, color: AppColors.textDarkWhite, fontWeight: FontWeight.w500),
+    labelStyle: const TextStyle().copyWith(fontSize: 16, color: AppColors.textDarkWhite, fontWeight: FontWeight.w500),
+    hintStyle: const TextStyle().copyWith(fontSize: 16, color: AppColors.textDarkWhite, fontWeight: FontWeight.w500),
     errorStyle: const TextStyle().copyWith(
         fontSize: 16, color:AppColors.textDarkWhite, fontWeight: FontWeight.w500),
     floatingLabelStyle:  const TextStyle().copyWith(

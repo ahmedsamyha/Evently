@@ -13,6 +13,7 @@
   "email": "البريد الإلكتروني",
   "password": "كلمة المرور",
   "forget_password": "نسيت كلمة المرور؟",
+  "forget_password2": "نسيت كلمة المرور",
   "login": "تسجيل الدخول",
   "do_not_have_account": "ليس لديك حساب؟",
   "create_account": "إنشاء حساب",
@@ -43,5 +44,8 @@
   "logout": "تسجيل الخروج",
   "finish" : "إنهاء",
   "back" : "رجوع",
-  "next" : "التالي"
+  "next" : "التالي",
+  "or": "أو",
+  "register": "تسجيل"
+
 }

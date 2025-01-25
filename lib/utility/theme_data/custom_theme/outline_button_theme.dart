@@ -12,11 +12,11 @@ class CustomOutlineButtonTheme{
 
   static OutlinedButtonThemeData lightOutlineButtonTheme = OutlinedButtonThemeData(
 
-    style:  OutlinedButton.styleFrom(
+    style:OutlinedButton.styleFrom(
       elevation: 0,
       foregroundColor: AppColors.textPrimary,
       side:  const BorderSide(color:AppColors.kPrimaryColor),
-      textStyle: AppTextTheme.lightTextTheme.bodyLarge,
+      textStyle: const TextStyle(fontSize: 20,color: AppColors.kPrimaryColor , fontWeight:FontWeight.w500 ),
       padding: const EdgeInsets.symmetric(vertical: 16 , horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.borderRadiusXl))
     ),
@@ -28,9 +28,9 @@ class CustomOutlineButtonTheme{
 
     style:  OutlinedButton.styleFrom(
       elevation: 0,
-      foregroundColor: AppColors.textWhite,
+      foregroundColor: AppColors.textPrimary,
       side: const BorderSide(color: AppColors.kPrimaryColor),
-      textStyle: AppTextTheme.darkTextTheme.bodyLarge,
+      textStyle: const TextStyle(fontSize: 20,color: AppColors.kPrimaryColor , fontWeight:FontWeight.w500 ),
       padding: const EdgeInsets.symmetric(vertical: 16 , horizontal: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(TSizes.borderRadiusXl))
     ),
