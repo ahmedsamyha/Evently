@@ -38,6 +38,7 @@ void main() async {
 class EventlyApp extends StatelessWidget {
   const EventlyApp({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Consumer<MyProvider>(
