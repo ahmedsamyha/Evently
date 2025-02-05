@@ -2,13 +2,22 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/utility/theme_data/app_theme.dart';
 import 'package:evently/view/splash/splash_view.dart';
 import 'package:evently/view_model/my_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
+
+
 import 'package:provider/provider.dart';
+
+import 'firebase_options.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     ChangeNotifierProvider(
       create: (context) => MyProvider(),
@@ -18,6 +27,7 @@ void main() async {
           Locale('ar'),
         ],
         path: 'assets/translations',
+        saveLocale: true,
         fallbackLocale: Locale('en'),
         child: const EventlyApp(),
       ),

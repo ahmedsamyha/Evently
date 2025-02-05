@@ -1,4 +1,3 @@
-import 'package:evently/utility/theme_data/custom_theme/text_theme.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/colors.dart';

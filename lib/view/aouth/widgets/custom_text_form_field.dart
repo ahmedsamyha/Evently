@@ -6,15 +6,16 @@ import '../../../utility/helper/helper_funcation.dart';
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField(
       {super.key,
-      required this.prefixIcon,
+       this.prefixIcon,
        this.hint,
+        this.maxLines,
       required this.controller,
       required this.validator,
       required this.onChanged,
       required this.keyboardType,
       this.suffixIcon,
         required this.label, required this.obscureText});
-  final IconData prefixIcon;
+   IconData? prefixIcon;
   IconData? suffixIcon;
   String label;
    String? hint;
@@ -23,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextInputType? keyboardType;
   final bool obscureText ;
+  int? maxLines;
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
@@ -31,11 +33,15 @@ class CustomTextFormField extends StatelessWidget {
       style: TextStyle(color: dark? AppColors.textDarkWhite:AppColors.textGray,fontSize: 16,fontWeight: FontWeight.w500),
       decoration: InputDecoration(
         border: OutlineInputBorder(),
-        prefixIcon: Icon(prefixIcon),
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         suffixIcon: Icon(suffixIcon),
         labelText: label,
         hintText: hint,
+        alignLabelWithHint: true,
+        contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal:16),
+
       ),
+      maxLines:maxLines ,
       controller: controller,
       validator: validator,
       onChanged: onChanged,

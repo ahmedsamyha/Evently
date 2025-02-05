@@ -5,7 +5,7 @@ import 'package:evently/utility/constants/images.dart';
 import 'package:evently/view/aouth/screens/register_view.dart';
 import 'package:evently/view/aouth/screens/reset_password.dart';
 import 'package:evently/view/aouth/widgets/custom_text_form_field.dart';
-import 'package:evently/view/on_boarding/start_view.dart';
+import 'package:evently/view/home/views/app_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
@@ -50,7 +50,9 @@ class _LoginViewState extends State<LoginView> {
                 label: "email".tr(),
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onChanged: (value) {},
               ),
               SizedBox(
@@ -63,7 +65,9 @@ class _LoginViewState extends State<LoginView> {
                 label: "password".tr(),
                 controller: passwordController,
                 keyboardType: TextInputType.visiblePassword,
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onChanged: (value) {},
               ),
               SizedBox(
@@ -94,7 +98,12 @@ class _LoginViewState extends State<LoginView> {
               SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AppMainView()));
+                    },
                     child: Text("login".tr()),
                   )),
               SizedBox(

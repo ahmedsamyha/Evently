@@ -46,6 +46,18 @@
   "back" : "رجوع",
   "next" : "التالي",
   "or": "أو",
-  "register": "تسجيل"
-
+  "register": "تسجيل",
+  "create_event": "إنشاء فعالية",
+  "edit_event": "تعديل الفعالية",
+  "title": "العنوان",
+  "event_title": "عنوان الحدث",
+  "description": "الوصف",
+  "event_description": "وصف الحدث",
+  "event_date": "تاريخ الحدث",
+  "event_time": "وقت الحدث",
+  "choose_date": "اختيار التاريخ",
+  "choose_time": "اختيار الوقت",
+  "location": "الموقع",
+  "choose_event_location": "اختيار مكان الحدث",
+  "add_event": "إضافة حدث"
 }

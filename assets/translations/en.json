@@ -14,7 +14,6 @@
   "password": "Password",
   "forget_password": "Forget Password?",
   "forget_password2": "Forget Password",
-
   "login": "Login",
   "do_not_have_account": "Don’t Have Account ?",
   "create_account": " Create Account",
@@ -47,6 +46,18 @@
   "back" :"Back",
   "next": "Next",
   "or": "Or",
-  "register": "Register"
-
+  "register": "Register",
+  "create_event": "Create Event",
+  "edit_event": "Edit Event",
+  "title": "Title",
+  "event_title": "Event Title",
+  "description": "Description",
+  "event_description": "Event Description",
+  "event_date": "Event Date",
+  "event_time": "Event Time",
+  "choose_date": "Choose Date",
+  "choose_time": "Choose Time",
+  "location": "Location",
+  "choose_event_location": "Choose Event Location",
+  "add_event": "Add Event"
 }

@@ -11,8 +11,8 @@ class TAssets {
 
   static const String lightBookClub = 'assets/images/lightbookclub.png';
   static const String lightBirthday = 'assets/images/lightbirthday.png';
-  static const String lightEating = 'assets/images/lighteaing.png';
-  static const String lightExhibition = 'assets/images/lightexhibititon.png';
+  static const String lightEating = 'assets/images/lighteating.png';
+  static const String lightExhibition = 'assets/images/lightexhibition.png';
   static const String lightGaming = 'assets/images/lightgaming.png';
   static const String lightHoliday = 'assets/images/lightholiday.png';
   static const String lightMeeting = 'assets/images/lightmeeting.png';

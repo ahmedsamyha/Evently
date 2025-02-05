@@ -47,7 +47,9 @@ class _RegisterViewState extends State<RegisterView> {
                 label: "name".tr(),
                 controller: nameController,
                 keyboardType: TextInputType.text,
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onChanged: (value) {},
               ),
               SizedBox(
@@ -59,7 +61,9 @@ class _RegisterViewState extends State<RegisterView> {
                 label: "email".tr(),
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onChanged: (value) {},
               ),
               SizedBox(
@@ -72,7 +76,9 @@ class _RegisterViewState extends State<RegisterView> {
                 label: "password".tr(),
                 controller: passwordController,
                 keyboardType: TextInputType.visiblePassword,
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onChanged: (value) {},
               ),
               SizedBox(
@@ -85,7 +91,9 @@ class _RegisterViewState extends State<RegisterView> {
                 label: "re_password".tr(),
                 controller:rePasswordController ,
                 keyboardType: TextInputType.visiblePassword,
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onChanged: (value) {},
               ),
 

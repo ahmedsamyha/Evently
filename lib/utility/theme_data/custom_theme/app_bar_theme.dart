@@ -32,7 +32,7 @@ class CustomAppBarTheme {
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: AppColors.darkBackground,
+        statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light,
       ),
       iconTheme: IconThemeData(color: AppColors.kPrimaryColor, size: 24),

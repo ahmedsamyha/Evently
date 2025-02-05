@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently/utility/constants/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -40,7 +39,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                 label: "email".tr(),
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) {},
+                validator: (value) {
+                  return null;
+                },
                 onChanged: (value) {},
               ),
               SizedBox(

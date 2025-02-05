@@ -1,6 +1,6 @@
 import 'package:evently/utility/constants/colors.dart';
 import 'package:evently/utility/constants/images.dart';
-import 'package:evently/view/on_boarding/start_view.dart';
+import 'package:evently/view/home/views/app_main.dart';
 import 'package:flutter/material.dart';
 
 
@@ -17,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 3),() {
-   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> StartView()));
+   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> AppMainView()));
     },);
     super.initState();
   }

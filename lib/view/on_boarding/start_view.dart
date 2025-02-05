@@ -120,7 +120,7 @@ class _StartViewState extends State<StartView> {
               ),
               SizedBox(height:24),
               SizedBox(width:double.infinity,child: ElevatedButton(onPressed: (){
-                Navigator.push(context,MaterialPageRoute(builder:(context)=>OnBoardingView()));
+                Navigator.pushReplacement(context,MaterialPageRoute(builder:(context)=>OnBoardingView()));
               }, child: Text("lets_start".tr()),))
             ],
           ),
