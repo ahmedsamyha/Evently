@@ -14,11 +14,11 @@ dependencies:
     sdk: flutter
 
   #Utilitiy Packages
-  shared_preferences: ^2.4.0
+  shared_preferences: ^2.5.1
   shimmer: ^3.0.0
   google_fonts: ^6.2.1
   introduction_screen: ^3.1.14
-  easy_localization: ^3.0.7
+  easy_localization: ^3.0.7+1
   firebase_core: ^3.10.1
 
   #Assets
