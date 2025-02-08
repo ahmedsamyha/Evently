@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:evently/model/category_model.dart';
+import 'package:evently/firebase/firebase_manager.dart';
 import 'package:evently/utility/constants/colors.dart';
 import 'package:evently/view/home/widgets/custom_category_item.dart';
+import 'package:evently/view/home/widgets/custom_event_item.dart';
 import 'package:evently/view_model/my_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../model/task_model.dart';
 import '../../../utility/helper/helper_funcation.dart';
 
 class HomeView extends StatefulWidget {
@@ -25,48 +28,6 @@ class _HomeViewState extends State<HomeView> {
     final dark = HelperFunctions.isDarkMode(context);
     String lang = context.locale.languageCode == 'en' ? 'EN' : 'AR';
     IconData icon = dark ? Icons.wb_sunny : Icons.wb_sunny_outlined;
-    List<CategoryModel> categoryList = [
-      CategoryModel(
-          categoryName: 'all',
-          categoryTitle: "all".tr(),
-          categoryIcon: Icons.done_all),
-      CategoryModel(
-          categoryName: 'sport',
-          categoryTitle: "sport".tr(),
-          categoryIcon: Icons.directions_bike_outlined),
-      CategoryModel(
-          categoryName: 'birthday',
-          categoryTitle: "birthday".tr(),
-          categoryIcon: Icons.cake_outlined),
-      CategoryModel(
-          categoryName: 'meeting',
-          categoryTitle: "meeting".tr(),
-          categoryIcon: Icons.business_rounded),
-      CategoryModel(
-          categoryName: 'gaming',
-          categoryTitle: "gaming".tr(),
-          categoryIcon: Icons.games_outlined),
-      CategoryModel(
-          categoryName: 'eating',
-          categoryTitle: "eating".tr(),
-          categoryIcon: Icons.fastfood_outlined),
-      CategoryModel(
-          categoryName: 'holiday',
-          categoryTitle: "holiday".tr(),
-          categoryIcon: Icons.holiday_village_outlined),
-      CategoryModel(
-          categoryName: 'exhibition',
-          categoryTitle: "exhibition".tr(),
-          categoryIcon: Icons.museum_outlined),
-      CategoryModel(
-          categoryName: 'workshop',
-          categoryTitle: "work_shop".tr(),
-          categoryIcon: Icons.work_outline),
-      CategoryModel(
-          categoryName: 'bookclub',
-          categoryTitle: "book_club".tr(),
-          categoryIcon: Icons.menu_book_outlined),
-    ];
     return Column(
       children: [
         Container(
@@ -108,14 +69,14 @@ class _HomeViewState extends State<HomeView> {
                             width: 8,
                           ),
                           Text(
-                            'Cairo , ',
+                            '${"cairo".tr()} , ',
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium!
                                 .copyWith(fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            'Egypt',
+                            "egypt".tr(),
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium!
@@ -147,9 +108,13 @@ class _HomeViewState extends State<HomeView> {
                         onTap: () {
                           setState(() {
                             if (context.locale.languageCode == 'en') {
-                              context.setLocale(const Locale('ar'));
+                              setState(() {
+                                context.setLocale(const Locale('ar'));
+                              });
                             } else {
-                              context.setLocale(const Locale('en'));
+                              setState(() {
+                                context.setLocale(const Locale('en'));
+                              });
                             }
                           });
                         },
@@ -185,84 +150,39 @@ class _HomeViewState extends State<HomeView> {
                       physics: BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => CustomCategoryItem(
-                            isSelected: categoryList[index] ==
-                                categoryList[selectedIndex],
+                            isSelected: provider.categoryList[index] ==
+                                provider.categoryList[selectedIndex],
                             onTap: () {
                               setState(() {
                                 selectedIndex = index;
                               });
                             },
-                            icon: categoryList[index].categoryIcon,
-                            text: categoryList[index].categoryTitle,
+                            icon: provider.categoryList[index].categoryIcon,
+                            text:
+                                provider.categoryList[index].categoryTitle.tr(),
                           ),
                       separatorBuilder: (context, index) => SizedBox(
                             width: 8,
                           ),
-                      itemCount: categoryList.length)),
+                      itemCount: provider.categoryList.length)),
             ],
           ),
         ),
         SizedBox(
           height: 16,
         ),
-        Container(
-          width: double.infinity,
-          height: height * .25,
-          margin: EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/${dark ? 'dark' : 'light'}${selectedIndex>0?categoryList[selectedIndex].categoryName:'sport'}.png',
-                ),
-                fit: BoxFit.fill),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  width: 56,
-                  padding: EdgeInsets.only(top: 2, bottom: 2),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: dark ? AppColors.darkBackground : Colors.white,
-                  ),
-                  child: Center(
-                    child: Text(
-                      ' 22\nNov',
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  ),
-                ),
-                Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.only(top: 2, bottom: 2),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: dark ? AppColors.darkBackground : Colors.white,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('This is a Birthday Party ',
-                              style: Theme.of(context).textTheme.bodySmall),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.favorite,
-                                color: AppColors.kPrimaryColor,
-                              ))
-                        ],
-                      ),
-                    )),
-              ],
-            ),
-          ),
+        StreamBuilder<QuerySnapshot<TaskModel>>(
+          stream: FirebaseManager.getEvents(),
+          builder: (context, snapshot) {
+            return Expanded(
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index) => CustomEventItem(
+                      model: snapshot.data!.docs[index].data(),
+                          selectedIndex: selectedIndex,
+                        ),
+                    itemCount: snapshot.data?.docs.length??0));
+          },
         ),
       ],
     );

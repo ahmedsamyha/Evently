@@ -59,5 +59,7 @@
   "choose_time": "Choose Time",
   "location": "Location",
   "choose_event_location": "Choose Event Location",
-  "add_event": "Add Event"
+  "add_event": "Add Event",
+  "egypt": "Egypt",
+  "cairo": "Cairo"
 }

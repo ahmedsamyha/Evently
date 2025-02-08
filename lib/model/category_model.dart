@@ -9,3 +9,4 @@ class CategoryModel{
   CategoryModel({required this.categoryName, required this.categoryTitle, required this.categoryIcon});
 }
 
+

@@ -19,8 +19,8 @@ dependencies:
   google_fonts: ^6.2.1
   introduction_screen: ^3.1.14
   easy_localization: ^3.0.7+1
-  firebase_core: ^3.10.1
-
+  firebase_core: ^3.11.0
+  cloud_firestore: ^5.6.3
   #Assets
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.17
