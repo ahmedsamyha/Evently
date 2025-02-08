@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/firebase/firebase_manager.dart';
 import 'package:evently/utility/constants/colors.dart';
+import 'package:evently/view/events/views/event_details.dart';
 import 'package:evently/view/home/widgets/custom_category_item.dart';
 import 'package:evently/view/home/widgets/custom_event_item.dart';
 import 'package:evently/view_model/my_provider.dart';
@@ -176,12 +177,23 @@ class _HomeViewState extends State<HomeView> {
           builder: (context, snapshot) {
             return Expanded(
                 child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                    itemBuilder: (context, index) => CustomEventItem(
-                      model: snapshot.data!.docs[index].data(),
-                          selectedIndex: selectedIndex,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index) => InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EventDetails(
+                                          model:
+                                              snapshot.data!.docs[index].data(),
+                                        )));
+                          },
+                          child: CustomEventItem(
+                            model: snapshot.data!.docs[index].data(),
+                            selectedIndex: selectedIndex,
+                          ),
                         ),
-                    itemCount: snapshot.data?.docs.length??0));
+                    itemCount: snapshot.data?.docs.length ?? 0));
           },
         ),
       ],

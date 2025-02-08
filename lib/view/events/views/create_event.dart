@@ -226,14 +226,14 @@ class _CreateEventState extends State<CreateEvent> {
                         onPressed: () async {
                           TimeOfDay? chosenTime = await showTimePicker(
                             context: context,
-                            initialTime: provider.selectedTime,
+                            initialTime: TimeOfDay.now(),
                           );
                           if (chosenTime != null) {
                             provider.changeSelectedTime(chosenTime);
                           }
                         },
                         child: Text(
-                          '${provider.selectedTime.hour}:${provider.selectedTime.minute}',
+                          provider.selectedTime,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!
@@ -302,8 +302,10 @@ class _CreateEventState extends State<CreateEvent> {
                                 title: titleController.text,
                                 description: descriptionController.text,
                                 image: categoryList[selectedIndex].categoryName,
-                                date: provider
-                                    .selectedDate.millisecondsSinceEpoch);
+                                date: provider.selectedDate.millisecondsSinceEpoch,
+                                time: provider.selectedTime,
+                                num: selectedIndex
+                            );
                             FirebaseManager.addEvent(task).then((value) {
                               Navigator.pop(context);
                             });

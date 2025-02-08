@@ -53,6 +53,7 @@
   "event_title": "Event Title",
   "description": "Description",
   "event_description": "Event Description",
+  "event_details": "Event Details",
   "event_date": "Event Date",
   "event_time": "Event Time",
   "choose_date": "Choose Date",

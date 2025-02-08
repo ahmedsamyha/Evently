@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/firebase/firebase_manager.dart';
 import 'package:evently/model/task_model.dart';
+import 'package:evently/view/events/views/edit_event.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utility/constants/colors.dart';
@@ -82,6 +83,7 @@ class CustomEventItem extends StatelessWidget {
                           )),
                       IconButton(
                           onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>EditEventView(model: model,)));
                           },
                           icon: Icon(
                             Icons.edit_outlined,

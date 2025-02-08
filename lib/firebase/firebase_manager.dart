@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently/model/task_model.dart';
 
 class FirebaseManager {
- static CollectionReference<TaskModel> getTaskCollection() {
+  static CollectionReference<TaskModel> getTaskCollection() {
     return FirebaseFirestore.instance
         .collection('Tasks')
         .withConverter<TaskModel>(
@@ -20,16 +20,20 @@ class FirebaseManager {
     var docRef = collection.doc();
     task.id = docRef.id;
     return docRef.set(task);
-
   }
 
-  static Stream<QuerySnapshot<TaskModel>> getEvents(){
+  static Stream<QuerySnapshot<TaskModel>> getEvents() {
     var collection = getTaskCollection();
     return collection.snapshots();
   }
 
-  static Future<void> deleteEvent(String id){
+  static Future<void> deleteEvent(String id) {
     var collection = getTaskCollection();
-   return collection.doc(id).delete();
+    return collection.doc(id).delete();
+  }
+
+  static Future<void> updateEvent(TaskModel model) {
+    var collection = getTaskCollection();
+    return collection.doc(model.id).update(model.toJson());
   }
 }

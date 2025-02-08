@@ -14,10 +14,10 @@ class CustomTextFormField extends StatelessWidget {
       required this.onChanged,
       required this.keyboardType,
       this.suffixIcon,
-        required this.label, required this.obscureText});
+         this.label, required this.obscureText});
    IconData? prefixIcon;
   IconData? suffixIcon;
-  String label;
+  String? label;
    String? hint;
   final TextEditingController controller;
   final String? Function(String?)? validator;
