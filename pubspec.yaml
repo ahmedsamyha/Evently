@@ -21,6 +21,9 @@ dependencies:
   easy_localization: ^3.0.7+1
   firebase_core: ^3.11.0
   cloud_firestore: ^5.6.3
+  firebase_auth: ^5.4.2
+  awesome_dialog: ^3.2.1
+
   #Assets
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.17

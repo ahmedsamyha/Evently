@@ -5,6 +5,7 @@ import 'package:evently/utility/constants/colors.dart';
 import 'package:evently/utility/helper/helper_funcation.dart';
 import 'package:evently/view/aouth/widgets/custom_text_form_field.dart';
 import 'package:evently/view_model/create_event_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:provider/provider.dart';
@@ -299,13 +300,14 @@ class _CreateEventState extends State<CreateEvent> {
                       child: ElevatedButton(
                           onPressed: () {
                             TaskModel task = TaskModel(
+                                uID: FirebaseAuth.instance.currentUser!.uid,
                                 title: titleController.text,
                                 description: descriptionController.text,
                                 image: categoryList[selectedIndex].categoryName,
-                                date: provider.selectedDate.millisecondsSinceEpoch,
+                                date: provider
+                                    .selectedDate.millisecondsSinceEpoch,
                                 time: provider.selectedTime,
-                                num: selectedIndex
-                            );
+                                num: selectedIndex);
                             FirebaseManager.addEvent(task).then((value) {
                               Navigator.pop(context);
                             });

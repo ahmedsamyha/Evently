@@ -1,5 +1,7 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:evently/firebase/firebase_manager.dart';
 import 'package:evently/utility/constants/colors.dart';
 import 'package:evently/utility/constants/images.dart';
 import 'package:evently/view/aouth/screens/register_view.dart';
@@ -9,6 +11,8 @@ import 'package:evently/view/home/views/app_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+
+import '../../../utility/helper/helper_funcation.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -25,7 +29,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    //final dark = HelperFunctions.isDarkMode(context);
+    final dark = HelperFunctions.isDarkMode(context);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -60,6 +64,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               CustomTextFormField(
                 obscureText: true,
+                maxLines: 1,
                 prefixIcon: Iconsax.lock,
                 suffixIcon: Iconsax.eye_copy,
                 label: "password".tr(),
@@ -99,10 +104,33 @@ class _LoginViewState extends State<LoginView> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AppMainView()));
+                     FirebaseManager.login(emailController.text, passwordController.text, (){
+                       return CircularProgressIndicator(
+                         color: dark
+                             ? AppColors.textDarkWhite
+                             : AppColors.kPrimaryColor,
+                       );
+                     }, (){
+                       Navigator.pushAndRemoveUntil(
+                           context,
+                           MaterialPageRoute(
+                               builder: (context) => AppMainView()),(route) => false,);
+                     }, (message){
+                       AwesomeDialog(
+                         btnCancelColor: const Color(0xfff44369),
+                         btnOkColor: AppColors.kPrimaryColor,
+                         dialogBackgroundColor: dark
+                             ? AppColors.darkBackground
+                             : AppColors.lightBackground,
+                         context: context,
+                         dialogType: DialogType.error,
+                         animType: AnimType.topSlide,
+                         title: 'Error',
+                         desc: message,
+                         btnOkOnPress: () {
+                         },
+                       ).show();
+                     });
                     },
                     child: Text("login".tr()),
                   )),

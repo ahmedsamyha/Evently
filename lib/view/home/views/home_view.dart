@@ -173,7 +173,7 @@ class _HomeViewState extends State<HomeView> {
           height: 16,
         ),
         StreamBuilder<QuerySnapshot<TaskModel>>(
-          stream: FirebaseManager.getEvents(),
+          stream: FirebaseManager.getEvents(selectedIndex),
           builder: (context, snapshot) {
             return Expanded(
                 child: ListView.builder(

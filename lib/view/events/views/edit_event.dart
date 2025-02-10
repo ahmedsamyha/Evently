@@ -5,6 +5,7 @@ import 'package:evently/utility/constants/colors.dart';
 import 'package:evently/utility/helper/helper_funcation.dart';
 import 'package:evently/view/aouth/widgets/custom_text_form_field.dart';
 import 'package:evently/view_model/create_event_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:provider/provider.dart';
@@ -314,6 +315,7 @@ class _EditEventViewState extends State<EditEventView> {
                       child: ElevatedButton(
                           onPressed: () {
                             TaskModel updatedTask = TaskModel(
+                              uID: FirebaseAuth.instance.currentUser!.uid,
                               id: widget.model.id,
                               title: titleController.text,
                               description: descriptionController.text,
