@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../../model/task_model.dart';
 import '../../../utility/helper/helper_funcation.dart';
+import '../../../view_model/user_provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -26,6 +27,8 @@ class _HomeViewState extends State<HomeView> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var provider = Provider.of<MyProvider>(context);
+    var userProvider = Provider.of<UserProvider>(context);
+
     final dark = HelperFunctions.isDarkMode(context);
     String lang = context.locale.languageCode == 'en' ? 'EN' : 'AR';
     IconData icon = dark ? Icons.wb_sunny : Icons.wb_sunny_outlined;
@@ -51,11 +54,16 @@ class _HomeViewState extends State<HomeView> {
                         "welcome_back".tr(),
                         style: Theme.of(context).textTheme.labelMedium,
                       ),
-                      Text(
-                        'John Safwat',
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color:
-                                dark ? AppColors.textDarkWhite : Colors.white),
+                      SizedBox(
+                        width: width *.5,
+                        child: Text(
+                          overflow: TextOverflow.ellipsis,
+                          userProvider.userModel?.name??'',
+                          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                color:
+                                    dark ? AppColors.textDarkWhite : Colors.white,
+                              ),
+                        ),
                       ),
                       SizedBox(
                         height: 8,

@@ -11,8 +11,10 @@ import 'package:evently/view/home/views/app_main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utility/helper/helper_funcation.dart';
+import '../../../view_model/user_provider.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -30,6 +32,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final dark = HelperFunctions.isDarkMode(context);
+    var userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -111,6 +114,7 @@ class _LoginViewState extends State<LoginView> {
                              : AppColors.kPrimaryColor,
                        );
                      }, (){
+                       userProvider.initUser();
                        Navigator.pushAndRemoveUntil(
                            context,
                            MaterialPageRoute(
@@ -191,7 +195,36 @@ class _LoginViewState extends State<LoginView> {
                 height: 16,
               ),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  FirebaseManager.loginWithGoogle((){
+                    return CircularProgressIndicator(
+                      color: dark
+                          ? AppColors.textDarkWhite
+                          : AppColors.kPrimaryColor,
+                    );
+                  }, (){
+                    userProvider.initUser();
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AppMainView()),(route) => false,);
+                  }, (message){
+                    AwesomeDialog(
+                      btnCancelColor: const Color(0xfff44369),
+                      btnOkColor: AppColors.kPrimaryColor,
+                      dialogBackgroundColor: dark
+                          ? AppColors.darkBackground
+                          : AppColors.lightBackground,
+                      context: context,
+                      dialogType: DialogType.error,
+                      animType: AnimType.topSlide,
+                      title: 'Error',
+                      desc: message,
+                      btnOkOnPress: () {
+                      },
+                    ).show();
+                  });
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

@@ -24,6 +24,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
 
   @override
   Widget build(BuildContext context) {
+    //var userProvider = Provider.of<UserProvider>(context);
+
     final pageDecoration = PageDecoration(
       titleTextStyle: Theme.of(context)
           .textTheme

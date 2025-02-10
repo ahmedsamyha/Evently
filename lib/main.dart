@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:evently/utility/theme_data/app_theme.dart';
 import 'package:evently/view/splash/splash_view.dart';
 import 'package:evently/view_model/my_provider.dart';
+import 'package:evently/view_model/user_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:flutter/material.dart';
@@ -19,8 +20,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => MyProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => MyProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+      ],
       child: EasyLocalization(
         supportedLocales: [
           Locale('en'),
@@ -41,19 +45,16 @@ class EventlyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MyProvider>(
-      builder: (context, provider, child) {
-        return MaterialApp(
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-          debugShowCheckedModeBanner: false,
-          themeMode: provider.themeMode, // Pass the themeMode from provider
-          darkTheme: AppTheme.darkTheme,
-          theme: AppTheme.lightTheme,
-          home: SplashView(),
-        );
-      },
+    var myProvider = Provider.of<MyProvider>(context);
+    return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      debugShowCheckedModeBanner: false,
+      themeMode: myProvider.themeMode, // Pass the themeMode from provider
+      darkTheme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme,
+      home: SplashView(),
     );
   }
 }

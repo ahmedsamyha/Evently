@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:evently/model/task_model.dart';
 import 'package:evently/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseManager {
   static CollectionReference<TaskModel> getTaskCollection() {
@@ -115,12 +116,71 @@ class FirebaseManager {
       } else {
         onError('Please Verify Your Email To Continue');
       }
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       onError('Wrong Email Or Password');
     }
   }
 
   static Future<void> logout() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+ /* static Future<String?> getUserName(String userId) async {
+    var doc = await getUsersCollection().doc(userId).get();
+    if (doc.exists) {
+      return doc.data()?.name;
+    }
+    return null;
+  }*/
+
+  static Future<UserModel?> userData()async{
+    var collection = getUsersCollection();
+    DocumentSnapshot<UserModel> docRef = await collection.doc(FirebaseAuth.instance.currentUser!.uid).get();
+    return docRef.data();
+  }
+
+
+  static Future<void> loginWithGoogle(Function onLoading, Function onSuccess, Function onError) async {
+    try {
+      onLoading();
+
+      // Ensure previous Google session is disconnected
+      await GoogleSignIn().signOut();
+
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) return; // User canceled login
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      final User? firebaseUser = userCredential.user;
+      if (firebaseUser == null) return;
+
+      final CollectionReference usersCollection = FirebaseFirestore.instance.collection('Users');
+      final DocumentSnapshot userDoc = await usersCollection.doc(firebaseUser.uid).get();
+
+      if (!userDoc.exists) {
+        UserModel userModel = UserModel(
+          id: firebaseUser.uid,
+          name: firebaseUser.displayName ?? 'No Name',
+          email: firebaseUser.email ?? 'No Email',
+          createdAt: DateTime.now().millisecondsSinceEpoch,
+        );
+
+        await usersCollection.doc(firebaseUser.uid).set(userModel.toJson());
+      } else {
+        print("User already exists, skipping Firestore update.");
+      }
+
+      onSuccess();
+    } catch (e) {
+      print("Google Sign-In Error: $e");
+      onError(e.toString());
+    }
   }
 }
