@@ -21,6 +21,7 @@ class EditEventView extends StatefulWidget {
 }
 
 class _EditEventViewState extends State<EditEventView> {
+  bool isFave = false;
   late TextEditingController titleController;
   late TextEditingController descriptionController;
   late int selectedIndex;
@@ -324,6 +325,7 @@ class _EditEventViewState extends State<EditEventView> {
                                   provider.selectedDate.millisecondsSinceEpoch,
                               time: provider.selectedTime,
                               num: selectedIndex,
+                              isFave: isFave
                             );
                             FirebaseManager.updateEvent(updatedTask)
                                 .then((_) => Navigator.pop(context));

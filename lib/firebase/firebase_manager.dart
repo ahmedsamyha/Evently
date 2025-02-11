@@ -37,6 +37,12 @@ class FirebaseManager {
         .snapshots();
   }
   }
+  static Stream<QuerySnapshot<TaskModel>> getFavorites() {
+    var collection = getTaskCollection();
+    return collection
+        .where('uID', isEqualTo: FirebaseAuth.instance.currentUser!.uid).where('isFave' , isEqualTo: true).orderBy('date',descending: false)
+        .snapshots();
+  }
 
   static Future<void> deleteEvent(String id) {
     var collection = getTaskCollection();
