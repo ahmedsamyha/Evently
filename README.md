@@ -1,11 +1,18 @@
 # Flutter Evently App 📅📱
 Evently is a Flutter app built with Dart, featuring:
+
 ✅ Firebase Firestore for real-time event management
+
 ✅ Firebase Auth for secure authentication
+
 ✅ Provider for state management
+
 ✅ Responsive UI for all screen sizes
+
 ✅ Dark & Light themes for a better user experience
+
 ✅ Multi-language support (Arabic & English)
+
 Seamless event browsing, favorites, and details—all in one place! 🚀✨
 <br/>
 ## App Preview
