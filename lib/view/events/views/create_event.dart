@@ -24,7 +24,6 @@ class CreateEvent extends StatefulWidget {
 
 class _CreateEventState extends State<CreateEvent> {
   int selectedIndex = 0;
-   late bool isFave;
   var titleController = TextEditingController();
   var descriptionController = TextEditingController();
   @override
@@ -311,7 +310,7 @@ class _CreateEventState extends State<CreateEvent> {
                                     .selectedDate.millisecondsSinceEpoch,
                                 time: provider.selectedTime,
                                 num: selectedIndex,
-                              isFave: isFave,
+                              isFave: false,
                             );
                             FirebaseManager.addEvent(task).then((value) {
                               Navigator.pop(context);

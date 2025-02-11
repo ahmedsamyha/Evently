@@ -32,6 +32,7 @@ dependencies:
   animated_toggle_switch: ^0.8.4
   #State Management
   provider: ^6.1.2
+  dropdown_flutter: ^1.0.1
 
 
   #----------------------PACKAGES END-----------------#

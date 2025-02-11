@@ -12,6 +12,7 @@ class LoveView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var searchController = TextEditingController();
+    var height = MediaQuery.of(context).size.height;
 
     return Padding(
       padding: const EdgeInsets.only(top: 24),
@@ -28,30 +29,55 @@ class LoveView extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 obscureText: false),
           ),
+          SizedBox(
+            height: 16,
+          ),
           StreamBuilder<QuerySnapshot<TaskModel>>(
             stream: FirebaseManager.getFavorites(),
             builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: Text("Something went wrong!"));
+              }
+              if (!snapshot.hasData || snapshot.data == null || snapshot.data!.docs.isEmpty) {
+                return Padding(
+                  padding:  EdgeInsets.only(top:height*.2 ),
+                  child: Column(
+                    children: [
+                      Image.asset('assets/images/fave0.png', height: 150, width: 150),
+                    ],
+                  ),
+                );
+              }
               return Expanded(
-                  child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      itemBuilder: (context, index) => InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EventDetails(
-                                    model:
-                                    snapshot.data!.docs[index].data(),
-                                  )));
-                        },
-                        child: CustomEventItem(
-                          model: snapshot.data!.docs[index].data(),
-                          selectedIndex: index,
-                        ),
+                child: ListView.builder(
+                  physics: BouncingScrollPhysics(),
+                  itemCount: snapshot.data!.docs.length,
+                  itemBuilder: (context, index) {
+                    var taskModel = snapshot.data!.docs[index].data();
+
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EventDetails(model: taskModel),
+                          ),
+                        );
+                      },
+                      child: CustomEventItem(
+                        model: taskModel,
+                        selectedIndex: index,
                       ),
-                      itemCount: snapshot.data?.docs.length ?? 0));
+                    );
+                  },
+                ),
+              );
             },
           ),
+
         ],
       ),
     );

@@ -325,7 +325,7 @@ class _EditEventViewState extends State<EditEventView> {
                                   provider.selectedDate.millisecondsSinceEpoch,
                               time: provider.selectedTime,
                               num: selectedIndex,
-                              isFave: isFave
+                              isFave: widget.model.isFave,
                             );
                             FirebaseManager.updateEvent(updatedTask)
                                 .then((_) => Navigator.pop(context));

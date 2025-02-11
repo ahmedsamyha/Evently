@@ -33,7 +33,8 @@ class FirebaseManager {
         .snapshots();
   }else{
     return collection
-        .where('uID', isEqualTo: FirebaseAuth.instance.currentUser!.uid).where('num' , isEqualTo: selectedIndex-1).orderBy('date',descending: false)
+        .where('uID', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .where('num' , isEqualTo: selectedIndex-1).orderBy('date',descending: false)
         .snapshots();
   }
   }

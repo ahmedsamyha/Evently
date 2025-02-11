@@ -62,5 +62,7 @@
   "choose_event_location": "Choose Event Location",
   "add_event": "Add Event",
   "egypt": "Egypt",
-  "cairo": "Cairo"
+  "cairo": "Cairo",
+  "arabic": "Arabic",
+  "english": "English"
 }
